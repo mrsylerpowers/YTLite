@@ -128,10 +128,17 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           if [ -n "${{ github.event.inputs.ipa_release_tag }}" ]; then
-            asset_id=$(gh api "repos/${{ github.repository }}/releases/tags/${{ github.event.inputs.ipa_release_tag }}" \
-              --jq ".assets[] | select(.name == \"${{ github.event.inputs.ipa_asset_name }}\") | .id")
+            tag="${{ github.event.inputs.ipa_release_tag }}"
+            name="${{ github.event.inputs.ipa_asset_name }}"
+            # Draft releases are not reachable through /releases/tags, so list releases (which includes drafts) and pick by tag.
+            release_id=$(gh api "repos/${{ github.repository }}/releases?per_page=100" --jq ".[] | select(.tag_name == \"$tag\") | .id" | head -1)
+            if [ -z "$release_id" ]; then
+              echo "::error::No release found with tag '$tag'."
+              exit 1
+            fi
+            asset_id=$(gh api "repos/${{ github.repository }}/releases/$release_id/assets" --jq ".[] | select(.name == \"$name\") | .id" | head -1)
             if [ -z "$asset_id" ]; then
-              echo "::error::No asset named '${{ github.event.inputs.ipa_asset_name }}' in release '${{ github.event.inputs.ipa_release_tag }}'."
+              echo "::error::No asset named '$name' in release '$tag'."
               exit 1
             fi
             curl -sSL -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/octet-stream" \
