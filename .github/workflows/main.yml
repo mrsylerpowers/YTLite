@@ -39,6 +39,12 @@ on:
         required: true
         default: false
 
+      build_from_source:
+        description: "Build the tweak from this fork's source (no subscription/activation)"
+        type: boolean
+        required: true
+        default: true
+
       ipa_url:
         description: "URL to the decrypted IPA file"
         default: ""
@@ -84,6 +90,7 @@ jobs:
       enable_ytabc: ${{ inputs.enable_ytabc }}
       enable_demc: ${{ inputs.enable_demc }}
       tweak_version: ${{ inputs.tweak_version }}
+      build_from_source: ${{ inputs.build_from_source }}
 
   package:
     name: Package IPA

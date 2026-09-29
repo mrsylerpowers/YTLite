@@ -39,6 +39,12 @@ on:
         required: true
         default: false
 
+      build_from_source:
+        description: "Build the tweak from this fork's source (no subscription/activation)"
+        type: boolean
+        required: true
+        default: true
+
       ipa_url:
         description: "URL to the decrypted IPA file"
         default: ""
@@ -46,9 +52,9 @@ on:
         type: string
 
       tweak_url:
-        description: "URL to the YouTube Plus tweak file"
+        description: "URL to the YouTube Plus tweak file (used only when build_from_source is false)"
         default: ""
-        required: true
+        required: false
         type: string
 
       display_name:
@@ -84,6 +90,7 @@ jobs:
       enable_ytabc: ${{ inputs.enable_ytabc }}
       enable_demc: ${{ inputs.enable_demc }}
       tweak_url: ${{ inputs.tweak_url }}
+      build_from_source: ${{ inputs.build_from_source }}
 
   package:
     name: Package IPA (Beta)
