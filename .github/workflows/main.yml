@@ -172,6 +172,10 @@ jobs:
         run: |
           python3 tools/add_icon_scales.py "YouTubePlus_${{ github.event.inputs.tweak_version }}.ipa" Resources/icon-unlocked-180.png Resources/icon-unlocked-167.png
 
+      - name: Remove subscription wording from the tweak bundle
+        run: |
+          python3 tools/strip_subscription_strings.py "YouTubePlus_${{ github.event.inputs.tweak_version }}.ipa"
+
       - name: Upload to GitHub Releases
         uses: softprops/action-gh-release@v3
         with:
