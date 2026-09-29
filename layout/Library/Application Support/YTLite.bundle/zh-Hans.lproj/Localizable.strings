@@ -7,7 +7,6 @@
 "LogOut" = "退出登录";
 "LogOutTitle" = "退出登录";
 "LogOutMessage" = "您确定要继续吗？";
-"FeaturesNotActivated" = "您尚未登录。要访问 YouTube Plus 功能，请使用有效订阅登录。";
 
 /* Main section */
 "Main" = "主功能";

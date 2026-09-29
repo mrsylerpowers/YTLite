@@ -7,7 +7,6 @@
 "LogOut" = "Выйти";
 "LogOutTitle" = "Выход";
 "LogOutMessage" = "Уверены, что хотите продолжить?";
-"FeaturesNotActivated" = "Вы не вошли в аккаунт. Для доступа к функциям YouTube Plus войдите с активной подпиской.";
 
 /* Main section */
 "Main" = "Основные";

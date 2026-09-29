@@ -7,7 +7,6 @@
 "LogOut" = "登出";
 "LogOutTitle" = "登出";
 "LogOutMessage" = "您確定要繼續嗎？";
-"FeaturesNotActivated" = "您尚未登入。請使用具備有效訂閱的帳號登入，以使用 YouTube Plus 功能。";
 
 /* Main section */
 "Main" = "主要";
